@@ -11,7 +11,6 @@ from django.db.models.query_utils import DeferredAttribute
 from django.utils import six
 from django.utils.translation import ugettext as _
 
-from mptt.fields import TreeForeignKey, TreeOneToOneField, TreeManyToManyField
 from mptt.managers import TreeManager
 from mptt.signals import node_moved
 from mptt.utils import _get_tree_model
@@ -386,7 +385,10 @@ class MPTTModel(six.with_metaclass(MPTTModelBase, models.Model)):
     """
     Base class for tree models.
     """
-    _default_manager = TreeManager()
+    # _default_manager = TreeManager()
+
+    class MPTTMeta:
+       tree_manager_name = 'objects'
 
     class Meta:
         abstract = True
