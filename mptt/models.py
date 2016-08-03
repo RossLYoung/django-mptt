@@ -390,7 +390,10 @@ class MPTTModel(six.with_metaclass(MPTTModelBase, models.Model)):
     class MPTTMeta:
        tree_manager_name = 'objects'
 
+    objects = TreeManager()
+
     class Meta:
+        tree_manager_name = 'objects'
         abstract = True
 
     def __init__(self, *args, **kwargs):
